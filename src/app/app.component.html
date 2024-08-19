@@ -1,0 +1,71 @@
+<main>
+  <section [formGroup]="formGroup">
+    <div class="flex justify-between">
+      <div for="rate">Taux de change variable</div>
+      <div>{{ rate() }}</div>
+    </div>
+    <br />
+    <div class="flex justify-between">
+      <div>
+        <input #fixedRateInput type="checkbox" id="fixedRateEnabled" name="fixedRateEnabled" (click)="checkFixedRate($event.target)">
+        <label for="rate">Taux de change fixe</label>
+      </div>
+      <input type="number" id="fixedRate" name="fixedRate" formControlName="fixedRate">
+    </div>
+    <br />
+    <div class="flex justify-between">
+      <div>Choix de devise</div>
+      <div>
+        <div>
+          <input type="radio" id="eur" name="currency" [value]="CURRENCIES.EUR" (click)="updateForm(CURRENCIES.EUR)" checked />
+          <label for="eur">EUR</label>
+          <input type="radio" id="usd" name="currency" [value]="CURRENCIES.USD" (click)="updateForm(CURRENCIES.USD)" />
+          <label for="usd">USD</label>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="flex justify-between">
+      <label for="amount">Montant choisit</label>
+      <input type="number" id="amount" name="amount" formControlName="amount" (blur)="updateForm(currency === CURRENCIES.EUR ? CURRENCIES.EUR : CURRENCIES.USD)" />
+    </div>
+    <br />
+    <div class="flex justify-between">
+      <div>Montant convertit</div>
+      <div>
+        <span>{{ convertedAmount() }}</span>
+        <span>{{ (currency === CURRENCIES.EUR ? CURRENCIES.USD : CURRENCIES.EUR) | uppercase }} </span>
+      </div>
+    </div>
+  </section>
+  <br />
+  <section>
+    <h3>Historique des 5 dernières conversions</h3>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Taux Réel</th>
+          <th scope="col">Taux fixe</th>
+          <th scope="col">Montant</th>
+          <th scope="col">Devise</th>
+          <th scope="col">Montant Convertit</th>
+          <th scope="col">Devise de Conversion</th>
+        </tr>
+      </thead>
+      <br />
+      <tbody>
+        @for (conversion of conversionList; track conversion.amount) {
+        <tr>
+          <td>{{ conversion.rate }}</td>
+          <td>{{ conversion.fixedRate }}</td>
+          <td>{{ conversion.amount }}</td>
+          <td>{{ (conversion.selectedCurrency) | uppercase }}</td>
+          <td>{{ conversion.convertedAmount }}</td>
+          <td>{{ (conversion.convertedCurrency) | uppercase }}</td>
+        </tr>
+        <br />
+        }
+      </tbody>
+    </table>
+  </section>
+</main>

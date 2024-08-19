@@ -1,0 +1,20 @@
+main {
+    margin: auto;
+    padding: 20px;
+    width: 50%;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgba($color: #000000, $alpha: 0.3);
+    background-color: white;
+
+    span {
+        margin-left: 20px;
+    }
+
+    table {
+        width: 100%;
+
+        td {
+            text-align: center;
+        }
+    }
+}

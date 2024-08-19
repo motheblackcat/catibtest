@@ -1,0 +1,8 @@
+- Séparer la partie calcul du tableau d'historique en deux composants
+- Implémenter un service chargé des calculs pour la séparation des responsabilités
+- Utiliser l'observable valuechanges du reactiveform pour une meilleure reactivé
+- Utiliser la combinaison des observables et signaux (computedSignals pour calcul) afin de pouvoir être asynchrone si besoin ainsi qu'une meilleure réactivité (event driven design)
+- Guidline sur les types (ex: indiquer le type même si c'est un primitif inféré ?) + no any
+- Consolider le design en fonction de la DA prise
+- La liste d'historique peut être dans un menu accordéon au besoin
+- Les conversions peuvent être persistées (localStorage ou externe) au besoin
