@@ -13,6 +13,7 @@ import { Conversion } from './interfaces/conversion.interface';
 })
 export class AppComponent implements OnInit {
   rate = signal(1.1);
+  realRate = 1.1;
   step = 0.01;
   lowRate = -0.05;
   highRate = 0.05;
@@ -47,7 +48,9 @@ export class AppComponent implements OnInit {
   updateRate(): void {
     const randomIndex = Math.floor(Math.random() * this.rateRange.length);
     const randomRate = this.rateRange[randomIndex];
-    this.rate.update(v => Number((v + randomRate).toFixed(2)));
+    const newRealRate = Number((this.realRate + randomRate).toFixed(2));
+    this.rate.set(newRealRate);
+    console.log(this.rate())
     this.updateForm(this.currency as CURRENCIES);
   }
 

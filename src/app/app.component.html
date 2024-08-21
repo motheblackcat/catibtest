@@ -54,7 +54,7 @@
       </thead>
       <br />
       <tbody>
-        @for (conversion of conversionList; track conversion.amount) {
+        @for (conversion of conversionList; track $index) {
         <tr>
           <td>{{ conversion.rate }}</td>
           <td>{{ conversion.fixedRate }}</td>
